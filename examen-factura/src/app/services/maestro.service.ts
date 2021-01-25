@@ -1,4 +1,4 @@
-import { Detalle } from './../interfaces/detalle';
+import { Factura } from './../interfaces/factura';
 import { Maestro } from './../interfaces/maestro';
 import { MAESTROS } from './../mocks-app/mock-maestro';
 import { Injectable } from '@angular/core';
@@ -10,11 +10,11 @@ import { Injectable } from '@angular/core';
 })
 export class MaestroService {
 
-  Detalle
   maestro : Maestro[];
+
   constructor() { }
-  getDetalles(): Detalle[] {
+  getFacturas(): Factura[] {
     this.maestro = MAESTROS;
-    return this.maestro[0].detalle;
+    return this.maestro[0].factura;
   }
 }

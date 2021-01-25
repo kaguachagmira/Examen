@@ -1,6 +1,6 @@
-import { Detalle } from './detalle';
+import { Factura } from './factura';
 
 export interface Maestro {
   id: number;
-  detalle: Detalle[],
+  factura: Factura[],
 }

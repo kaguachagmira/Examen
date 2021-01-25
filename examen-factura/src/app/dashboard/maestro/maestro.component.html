@@ -1,23 +1,49 @@
-<button (click)="switchInformacion()" >MAESTRO</button>
-<div *ngIf="botonMaestro">
-  <h2>Maestro</h2>
-  <ul class="maestro">
+
+
+<div class="row">
+  <button (click)="getFacturas()" >MAESTRO</button>
+  <div class="col-sm" *ngIf="facturas">
+    <h2>Estas son las facturas del maestro</h2>
+    <ul>
+      <li *ngFor="let factura of facturas"
+        (click)="obtenerDetallesFactura(factura)">
+        <h3>   Factura del señor: {{factura.cliente.nombre}}</h3>
+        Numero de factura: {{factura.id}}<br>
+        Fecha de emisión: {{factura.fechaEmision}}<br>
+        Subtotal: {{factura.subtotal}}<br>
+        Iva: {{factura.iva}}<br>
+        Total: {{factura.total}}<br>
+
+      </li>
+    </ul>
+  </div>
+
+<div class="col-sm" *ngIf="detalles">
+  <ul>
     <li *ngFor="let detalle of detalles"
-      (click)="onSelect(detalle)">
-      Factura del señor: {{detalle.factura.cliente.nombre}}
+      (click)="obtenerDetallesFactura(detalle)">
+      <h4>
+        Nombre producto: {{detalle.producto.id}}
+
+      </h4>
+      <h4>
+        Id producto: {{detalle.producto.id}}
+
+      </h4>
+      <h4>
+        Cantidad: {{detalle.cantidad}}
+
+      </h4>
+      <h4>
+        Valor unitario: {{detalle.valorUnitario}}
+
+      </h4>
+      <h4>
+        Precio total: {{detalle.precio}}
+      </h4>
     </li>
   </ul>
+</div>
 
-  <div *ngIf="detalleSeleccionado">
-
-    <h2> Nombre del cliente: {{detalleSeleccionado.factura.cliente.nombre | uppercase}} </h2>
-    <div>Nombre producto: {{detalleSeleccionado.producto.name}}</div>
-    <div>Id producto:{{detalleSeleccionado.producto.id}} </div>
-    <div>Precio Producto:{{detalleSeleccionado.precio}}</div>
-    <div>Cantidad Producto:{{detalleSeleccionado.cantidad}}</div>
-    <div>Subtotal Producto:{{detalleSeleccionado.factura.subtotal}}</div>
-    <div>Iva:{{detalleSeleccionado.factura.iva}}</div>
-    <div>Total:{{detalleSeleccionado.factura.total}}</div>
-  </div>
 
 </div>

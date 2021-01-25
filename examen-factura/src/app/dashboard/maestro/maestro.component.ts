@@ -1,3 +1,5 @@
+import { FacturaService } from './../../services/factura.service';
+import { Factura } from './../../interfaces/factura';
 import { MaestroService } from './../../services/maestro.service';
 import { Detalle } from './../../interfaces/detalle';
 import { Component, OnInit } from '@angular/core';
@@ -9,27 +11,21 @@ import { Component, OnInit } from '@angular/core';
 export class MaestroComponent implements OnInit {
 
 
-  botonMaestro:boolean
-  detalles: Detalle[];
-  detalleSeleccionado: Detalle;
-  constructor(private maestroService: MaestroService) {
+  facturas: Factura[];
+  detalles=[];
+  facturaSeleccionada: Factura;
+  constructor(private maestroService: MaestroService, private facturaService: FacturaService) {
    }
 
   ngOnInit(): void {
-    this.botonMaestro = false;
-    this.getDetalles();
   }
-  obtenerDetalles(){
-
+  obtenerDetallesFactura(factura: Factura): void {
+    this.facturaSeleccionada = factura;
+    this.detalles = this.facturaService.getDetalles(factura);
+    console.log(this.detalles);
   }
-  switchInformacion(){
-    this.botonMaestro=true;
-  }
-  onSelect(detalle: Detalle): void {
-    this.detalleSeleccionado = detalle;
-  }
-  getDetalles(): void {
-    this.detalles = this.maestroService.getDetalles();
+  getFacturas(): void {
+    this.facturas = this.maestroService.getFacturas();
   }
 
 }
