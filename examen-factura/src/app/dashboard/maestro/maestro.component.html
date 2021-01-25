@@ -1,0 +1,23 @@
+<button (click)="switchInformacion()" >MAESTRO</button>
+<div *ngIf="botonMaestro">
+  <h2>Maestro</h2>
+  <ul class="maestro">
+    <li *ngFor="let detalle of detalles"
+      (click)="onSelect(detalle)">
+      Factura del señor: {{detalle.factura.cliente.nombre}}
+    </li>
+  </ul>
+
+  <div *ngIf="detalleSeleccionado">
+
+    <h2> Nombre del cliente: {{detalleSeleccionado.factura.cliente.nombre | uppercase}} </h2>
+    <div>Nombre producto: {{detalleSeleccionado.producto.name}}</div>
+    <div>Id producto:{{detalleSeleccionado.producto.id}} </div>
+    <div>Precio Producto:{{detalleSeleccionado.precio}}</div>
+    <div>Cantidad Producto:{{detalleSeleccionado.cantidad}}</div>
+    <div>Subtotal Producto:{{detalleSeleccionado.factura.subtotal}}</div>
+    <div>Iva:{{detalleSeleccionado.factura.iva}}</div>
+    <div>Total:{{detalleSeleccionado.factura.total}}</div>
+  </div>
+
+</div>
